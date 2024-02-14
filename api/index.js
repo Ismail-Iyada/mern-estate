@@ -4,6 +4,9 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+// ? import routes
+import userRouter from "./routes/user.route.js";
+
 
 // initialize the dotenv package
 dotenv.config();
@@ -13,7 +16,7 @@ dotenv.config();
  * is connect to the database using the connect method, which returns
  * a promise that resolves if the connection was successful or rejects
  * with an error if it was not. and handling data models
- * 
+ *
  * * but for the connection string to be private and secure, it should be stored in an environment variable
  * * so i will use the dotenv package to load the environment variables from a .env file
  * * and then use the process.env object to access the environment variables
@@ -46,3 +49,7 @@ const app = express();
 app.listen(3000, () => {
   console.log("Server is running on port 3000!");
 });
+
+// * use the route, localhost:3000/api/user/test
+// ? /test is the route of the userRouter
+app.use("/api/user", userRouter);
