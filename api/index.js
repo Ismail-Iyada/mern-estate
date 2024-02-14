@@ -13,6 +13,7 @@ dotenv.config();
  * is connect to the database using the connect method, which returns
  * a promise that resolves if the connection was successful or rejects
  * with an error if it was not. and handling data models
+ * 
  * * but for the connection string to be private and secure, it should be stored in an environment variable
  * * so i will use the dotenv package to load the environment variables from a .env file
  * * and then use the process.env object to access the environment variables
