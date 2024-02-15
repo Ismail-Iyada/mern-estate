@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 // ? import routes
 import userRouter from "./routes/user.route.js";
-
+import authRouter from "./routes/auth.route.js";
 
 // initialize the dotenv package
 dotenv.config();
@@ -37,6 +37,11 @@ mongoose
 
 const app = express();
 
+// ! by default we arent allowed to send json 
+// ! data to the server,  so we need to enable it
+app.use(express.json());
+
+
 /**
  * Starts the server on port 3000.
  * but as its normal state, the server will not automatically
@@ -47,9 +52,10 @@ const app = express();
  * npm start -> "start": "node src/index.js"
  */
 app.listen(3000, () => {
-  console.log("Server is running on port 3000!");
+  console.log("Server is running on port 3000!!");
 });
 
 // * use the route, localhost:3000/api/user/test
 // ? /test is the route of the userRouter
 app.use("/api/user", userRouter);
+app.use("/api/auth", authRouter);
