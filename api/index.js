@@ -37,10 +37,9 @@ mongoose
 
 const app = express();
 
-// ! by default we arent allowed to send json 
+// ! by default we arent allowed to send json
 // ! data to the server,  so we need to enable it
 app.use(express.json());
-
 
 /**
  * Starts the server on port 3000.
@@ -59,3 +58,31 @@ app.listen(3000, () => {
 // ? /test is the route of the userRouter
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
+
+// ! This block of code is a middleware function that handles errors in the API server.
+
+app.use((err, req, res, next) => {
+  // ? The function takes four parameters: err, req, res, and next.
+  // ? The err parameter represents the error object.
+  // ? The req parameter represents the request object.
+  // ? The res parameter represents the response object.
+  // ? The next parameter represents the next middleware function in the request-response cycle.
+
+  const statusCode = err.statusCode || 500;
+  // ? This line assigns the status code of the error to the statusCode variable.
+  // ? If the error object has a statusCode property, it is used.
+  // ? Otherwise, a default status code of 500 (Internal Server Error) is used.
+
+  const message = err.message || "Internal Server Error";
+  // ? This line assigns the error message to the message variable.
+  // ? If the error object has a message property, it is used.
+  // ? Otherwise, a default message of "Internal Server Error" is used.
+
+  return res.status(statusCode).json({
+    success: false,
+    statusCode,
+    message,
+  });
+  // ? This line sends a JSON response with the status code, success status, and error message.
+});
+
