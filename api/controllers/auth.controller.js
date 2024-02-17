@@ -57,6 +57,9 @@ export const signin = async (req, res, next) => {
     // * destructure the password from the user object.
     // ! we don't want to send the password to the client.
     // * we only want to send the user's id, email, and username.
+    // ! in destructuring assignment, the syntax { password: psw, ...rest } = validUser._doc;
+    // ! is saying "take the property password from validUser._doc and assign it to a new variable psw,
+    // ! and then take all the remaining properties and put them into a new object rest".
     const { password: psw, ...rest } = validUser._doc;
     // ? send the token to the user as a cookie.
     // * the cookie should be httpOnly. because we don't want the client to access it. and it should be secure.
