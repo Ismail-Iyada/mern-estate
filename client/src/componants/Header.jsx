@@ -1,7 +1,9 @@
 import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function Header() {
+  const { currentUser } = useSelector((state) => state.user);
   return (
     <header className="bg-slate-200 shadow-md">
       <div className="flex justify-between items-center max-w-6xl mx-auto p-3">
@@ -32,10 +34,25 @@ export default function Header() {
               About
             </li>
           </Link>
-          <Link to="sign-in">
-            <li className="sm:inline text-slate-700 hover:underline">
-              Sign In
-            </li>
+          {/**
+           * // * If there is a currentUser, display the avatar.
+           * // * If there is no currentUser, display "Sign In".
+           * // * the profile page is a private route, so the user will
+           * // ! be redirected to the sign-in page if they are not signed in.
+           * // ? that logic is handled in the PrivateRoute component.
+           */}
+          <Link to="/profile">
+            {currentUser ? (
+              <img
+                className="rounded-full h-7 w-7 object-cover"
+                src={currentUser.avatar}
+                alt="Profile"
+              />
+            ) : (
+              <li className="sm:inline text-slate-700 hover:underline">
+                Sign In
+              </li>
+            )}
           </Link>
         </ul>
       </div>
