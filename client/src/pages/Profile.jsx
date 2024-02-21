@@ -1,73 +1,79 @@
-import { useSelector } from "react-redux";
-import { useRef, useState, useEffect } from "react";
+// Importing necessary dependencies
+import { useSelector } from "react-redux"; // Importing the useSelector hook from react-redux to access the Redux store
+import { useRef, useState, useEffect } from "react"; // Importing the useRef, useState, and useEffect hooks from react
 import {
   getDownloadURL,
   getStorage,
   ref,
   uploadBytesResumable,
-} from "firebase/storage";
-import { app } from "../firebase";
+} from "firebase/storage"; // Importing functions from the firebase/storage module
+import { app } from "../firebase"; // Importing the firebase app instance
 
+// Defining the Profile component
 export default function Profile() {
-  const fileRef = useRef(null);
-  const { currentUser } = useSelector((state) => state.user);
-  const [file, setFile] = useState(undefined);
-  const [filePercentage, setFilePercentage] = useState(0);
-  const [fileUploadError, setFileUploadError] = useState(false);
-  const [formData, setFormData] = useState({});
+  // Creating necessary state variables and refs
+  const fileRef = useRef(null); // Creating a ref to the file input element
+  const { currentUser } = useSelector((state) => state.user); // Accessing the currentUser object from the Redux store
+  const [file, setFile] = useState(undefined); // Creating a state variable to store the selected file
+  const [filePercentage, setFilePercentage] = useState(0); // Creating a state variable to store the upload progress percentage
+  const [fileUploadError, setFileUploadError] = useState(false); // Creating a state variable to indicate if there was an error during file upload
+  const [formData, setFormData] = useState({}); // Creating a state variable to store form data
 
-  // ! firebase storage
-  // ? allow read
-  // ? allow write: if
-  // ? request.resource.size < 2 * 1024 * 1024 &&
-  // ? request.resource.contentType.matches('image/.*')
-  // ! this is the rule for firebase storage to allow only images and size less than 2mb to be uploaded to the storage bucket.
-
+  // useEffect hook to handle file upload when the file state variable changes
   useEffect(() => {
     if (file) {
       handleFileUpload(file);
     }
   }, [file]);
 
+  // Function to handle file upload
   const handleFileUpload = (file) => {
-    const storage = getStorage(app);
-    const fileName = new Date().getTime() + "-" + file.name;
-    const storageRef = ref(storage, fileName);
-    const uploadTask = uploadBytesResumable(storageRef, file);
+    const storage = getStorage(app); // Getting the storage instance from the firebase app
+    const fileName = new Date().getTime() + "-" + file.name; // Generating a unique file name using the current timestamp and original file name
+    const storageRef = ref(storage, fileName); // Creating a reference to the storage location with the generated file name
+    const uploadTask = uploadBytesResumable(storageRef, file); // Creating an upload task to upload the file to the storage location
 
+    // Event listener for upload task state changes
     uploadTask.on(
+      // ! Listening for the "state_changed" event to track the upload progress
+      // * The event listener receives three functions as arguments: next, error, and complete
       "state_changed",
+      // ? next: A function that is called on each state change
       (snapshot) => {
         const progress =
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        setFilePercentage(Math.round(progress));
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100; // Calculating the upload progress percentage
+        setFilePercentage(Math.round(progress)); // Updating the filePercentage state variable with the rounded progress value
       },
+      // ? error: A function that is called if there is an error during upload
       (error) => {
-        setFileUploadError(true);
+        setFileUploadError(true); // Setting the fileUploadError state variable to true if there was an error during upload
       },
+      // ? complete: A function that is called when the upload is complete
       () => {
+        // Once the upload is complete, getting the download URL of the uploaded file
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          setFormData({ ...formData, avatar: downloadURL });
+          setFormData({ ...formData, avatar: downloadURL }); // Updating the formData state variable with the download URL of the uploaded file
           console.log("File available at", downloadURL);
         });
       }
     );
   };
 
+  // Rendering the Profile component
   return (
     <div className="p-3 max-w-lg mx-auto">
       <h1 className="text-3xl font-semibold text-center my-7">Profile</h1>
       <form className="flex flex-col gap-4">
         <input
-          onChange={(e) => setFile(e.target.files[0])}
+          onChange={(e) => setFile(e.target.files[0])} // Updating the file state variable with the selected file
           type="file"
           ref={fileRef}
           hidden
           accept="image/*"
         />
         <img
-          onClick={() => fileRef.current.click()}
-          src={formData.avatar || currentUser.avatar}
+          onClick={() => fileRef.current.click()} // Triggering the file input click event when the image is clicked
+          src={formData.avatar || currentUser.avatar} // Displaying the avatar image from the formData or the currentUser object
           alt="profile"
           className="rounded-full self-center h-24 w-24 object-cover cursor-pointer"
         />

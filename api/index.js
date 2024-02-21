@@ -7,6 +7,7 @@ import dotenv from "dotenv";
 // ? import routes
 import userRouter from "./routes/user.route.js";
 import authRouter from "./routes/auth.route.js";
+import cookieParser from "cookie-parser";
 
 // initialize the dotenv package
 dotenv.config();
@@ -40,6 +41,15 @@ const app = express();
 // ! by default we arent allowed to send json
 // ! data to the server,  so we need to enable it
 app.use(express.json());
+
+// ! The code uses a middleware called
+// ! "cookie parser" to read and understand
+// ! the cookies sent by the client in the
+// ! incoming requests. It then stores the parsed
+// ! cookies in the req.cookies object, allowing
+// ! us to easily access and use
+// ! the cookies in our code.
+app.use(cookieParser());
 
 /**
  * Starts the server on port 3000.
@@ -85,4 +95,3 @@ app.use((err, req, res, next) => {
   });
   // ? This line sends a JSON response with the status code, success status, and error message.
 });
-
