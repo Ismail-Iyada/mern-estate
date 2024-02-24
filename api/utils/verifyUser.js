@@ -1,5 +1,6 @@
 // Importing the 'jsonwebtoken' library to work with JSON Web Tokens
 import jwt from "jsonwebtoken";
+import { errorHandler } from "./error.js";
 
 // Defining a middleware function to verify the token
 export const verifyToken = (req, res, next) => {
