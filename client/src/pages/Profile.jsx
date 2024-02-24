@@ -9,6 +9,9 @@ import {
 } from "firebase/storage"; // Importing functions from the firebase/storage module
 import { app } from "../firebase"; // Importing the firebase app instance
 import {
+  deleteUserStart,
+  deleteUserFailure,
+  deleteUserSuccess,
   updateUserFailure,
   updateUserStart,
   updateUserSuccess,
@@ -34,7 +37,7 @@ export default function Profile() {
     }
   }, [file]);
 
-  //--------------------------------- Function to handle file upload--------------------------------------------
+  //--------------------------------- Function to handle file upload--------------------------------------------------
   const handleFileUpload = (file) => {
     const storage = getStorage(app); // Getting the storage instance from the firebase app
     const fileName = new Date().getTime() + "-" + file.name; // Generating a unique file name using the current timestamp and original file name
@@ -66,11 +69,11 @@ export default function Profile() {
       }
     );
   };
-  //--------------------------------- Function to handle form input changes--------------------------------------------
+  //--------------------------------- Function to handle form input changes-------------------------------------------
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
-  //--------------------------------- Function to handle form submission--------------------------------------------
+  //--------------------------------- Function to handle form submission----------------------------------------------
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -94,6 +97,23 @@ export default function Profile() {
       setUpdateSuccess(true);
     } catch (error) {
       dispatch(updateUserFailure(error.message));
+    }
+  };
+  //--------------------------------- Function to handle user deletion------------------------------------------------
+  const handleDeleteUser = async () => {
+    try {
+      dispatch(deleteUserStart());
+      const res = await fetch(`/api/user/delete/${currentUser._id}`, {
+        method: "DELETE",
+      });
+      const data = await res.json();
+      if (data.success === false) {
+        dispatch(deleteUserFailure(data.message));
+        return;
+      }
+      dispatch(deleteUserSuccess(data));
+    } catch (error) {
+      dispatch(deleteUserFailure(error.message));
     }
   };
 
@@ -159,7 +179,12 @@ export default function Profile() {
         </button>
       </form>
       <div className="flex justify-between mt-5">
-        <span className="text-red-700 cursor-pointer">Delete account</span>
+        <span
+          onClick={handleDeleteUser}
+          className="text-red-700 cursor-pointer"
+        >
+          Delete account
+        </span>
         <span className="text-red-700 cursor-pointer">Sign out</span>
       </div>
       <p className="text-red-700 mt-5">{error ? error : ""}</p>

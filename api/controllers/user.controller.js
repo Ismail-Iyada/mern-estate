@@ -2,7 +2,6 @@ import bcrypjs from "bcryptjs";
 import User from "../models/user.model.js";
 import { errorHandler } from "../utils/error.js";
 
-
 /**
  * Test API route.
  * ? req - The request object.
@@ -44,18 +43,18 @@ export const updateUser = async (req, res, next) => {
      * * req.body.avatar - The updated avatar.
      * * returns:  The updated user object.
      * * new: true - Return the updated user object. By default, it returns the original user object.
-     * 
-     * ? $set - The update operator. It replaces the value of a field 
-     * ! with the specified value. If the field does not exist, $set 
-     * ! will add a new field with the specified value. If the field 
+     *
+     * ? $set - The update operator. It replaces the value of a field
+     * ! with the specified value. If the field does not exist, $set
+     * ! will add a new field with the specified value. If the field
      * ! exists, $set will update the value of the field.
-     * 
+     *
      * ? findByIdAndUpdate() - Finds a matching document, updates it, and
-     * ! returns the updated document. The first argument is the ID of 
-     * ! the document to update. The second argument is the updated user 
-     * ! data. The third argument is an options object. The new option 
+     * ! returns the updated document. The first argument is the ID of
+     * ! the document to update. The second argument is the updated user
+     * ! data. The third argument is an options object. The new option
      * ! is set to true to return the updated user object.
-     * 
+     *
      */
     const updatedUser = await User.findByIdAndUpdate(
       req.params.id,
@@ -75,6 +74,20 @@ export const updateUser = async (req, res, next) => {
 
     // Send the updated user object as the response
     res.status(200).json(rest);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const deleteUser = async (req, res, next) => {
+  if (req.user.id !== req.params.id)
+    return next(errorHandler(401, "You can only delete your own account!"));
+  try {
+    await User.findByIdAndDelete(req.params.id);
+    res
+      .status(200)
+      .clearCookie("access_token")
+      .json("User has been deleted...");
   } catch (error) {
     next(error);
   }
