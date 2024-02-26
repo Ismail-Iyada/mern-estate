@@ -68,7 +68,7 @@ export default function SignIn() {
           onChange={handleChange}
         />
         <button
-          disabled={loading}
+          disabled={loading || !formData.email || !formData.password}
           className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
         >
           {loading ? "Loading..." : "Sign In"}

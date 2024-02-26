@@ -51,8 +51,7 @@ export const signin = async (req, res, next) => {
     // * if the password is not valid, throw an error.
     if (!validPassword) return next(errorHandler(401, "Wrong credentials!"));
     // ! create a token for the user.
-    // * the token should contain the user's id, email, and username.
-    // * the token should expire in 24 hours.
+    // * the token should contain the user's id
     const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET);
     // * destructure the password from the user object.
     // ! we don't want to send the password to the client.
@@ -105,6 +104,23 @@ export const google = async (req, res, next) => {
         .status(200)
         .json(rest);
     }
+  } catch (error) {
+    next(error);
+  }
+};
+
+// The signout function is responsible for logging out the user.
+// It does this by clearing the "access_token" cookie from the user's browser.
+// The "access_token" is a JWT (JSON Web Token) that is used to authenticate the user on subsequent requests after login.
+// When the token is cleared, the user is no longer authenticated because the server can't find the token in subsequent requests.
+// Therefore, the user is effectively logged out.
+// This is a common practice in token-based authentication systems.
+export const signout = (req, res, next) => {
+  try {
+    res
+      .clearCookie("access_token")
+      .status(200)
+      .json("User has been logged out!");
   } catch (error) {
     next(error);
   }

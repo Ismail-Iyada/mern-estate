@@ -15,8 +15,12 @@ import {
   updateUserFailure,
   updateUserStart,
   updateUserSuccess,
+  signOutUserFailure,
+  signOutUserSuccess,
+  signOutUserStart,
 } from "../redux/user/userSlice"; // Importing the action creators from the userSlice
 import { useDispatch } from "react-redux"; // Importing the useDispatch hook from react-redux to dispatch actions to the Redux store
+import { set } from "mongoose";
 
 // Defining the Profile component
 export default function Profile() {
@@ -28,6 +32,7 @@ export default function Profile() {
   const [fileUploadError, setFileUploadError] = useState(false); // Creating a state variable to indicate if there was an error during file upload
   const [formData, setFormData] = useState({}); // Creating a state variable to store form data
   const [updateSucess, setUpdateSuccess] = useState(false); // Creating a state variable to indicate if the update was successful
+  const [inputChange, setInputChange] = useState(false); // Creating a state variable to indicate if the input fields have changed
   const dispatch = useDispatch(); // Creating a dispatch function to dispatch actions to the Redux store
 
   // useEffect hook to handle file upload when the file state variable changes
@@ -64,6 +69,7 @@ export default function Profile() {
         // Once the upload is complete, getting the download URL of the uploaded file
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           setFormData({ ...formData, avatar: downloadURL }); // Updating the formData state variable with the download URL of the uploaded file
+          setInputChange(true);
           console.log("File available at", downloadURL);
         });
       }
@@ -72,6 +78,13 @@ export default function Profile() {
   //--------------------------------- Function to handle form input changes-------------------------------------------
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
+    if (
+      e.target.id === "username" ||
+      e.target.id === "email" ||
+      e.target.id === "password"
+    ) {
+      setInputChange(true);
+    }
   };
   //--------------------------------- Function to handle form submission----------------------------------------------
   const handleSubmit = async (e) => {
@@ -114,6 +127,21 @@ export default function Profile() {
       dispatch(deleteUserSuccess(data));
     } catch (error) {
       dispatch(deleteUserFailure(error.message));
+    }
+  };
+  //--------------------------------- Function to handle user sign out-------------------------------------------------
+  const handleSignOut = async () => {
+    try {
+      dispatch(signOutUserStart());
+      const res = await fetch("/api/auth/signout");
+      const data = await res.json();
+      if (data.success === false) {
+        dispatch(signOutUserFailure(data.message));
+        return;
+      }
+      dispatch(signOutUserSuccess(data));
+    } catch (error) {
+      dispatch(signOutUserFailure(data.message));
     }
   };
 
@@ -172,7 +200,7 @@ export default function Profile() {
           onChange={handleChange}
         />
         <button
-          disabled={loading}
+          disabled={loading || !inputChange}
           className="bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80"
         >
           {loading ? "Loading..." : "Update"}
@@ -185,7 +213,9 @@ export default function Profile() {
         >
           Delete account
         </span>
-        <span className="text-red-700 cursor-pointer">Sign out</span>
+        <span onClick={handleSignOut} className="text-red-700 cursor-pointer">
+          Sign out
+        </span>
       </div>
       <p className="text-red-700 mt-5">{error ? error : ""}</p>
       <p className="text-green-700 mt-5">
