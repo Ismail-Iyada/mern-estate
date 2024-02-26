@@ -7,8 +7,8 @@ import dotenv from "dotenv";
 // ? import routes
 import userRouter from "./routes/user.route.js";
 import authRouter from "./routes/auth.route.js";
+import listingRouter from "./routes/listing.route.js";
 import cookieParser from "cookie-parser";
-
 // initialize the dotenv package
 dotenv.config();
 
@@ -68,6 +68,7 @@ app.listen(3000, () => {
 // ? /test is the route of the userRouter
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
+app.use("/api/listing", listingRouter);
 
 // ! This block of code is a middleware function that handles errors in the API server.
 
