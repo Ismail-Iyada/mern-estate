@@ -21,6 +21,7 @@ import {
 } from "../redux/user/userSlice"; // Importing the action creators from the userSlice
 import { useDispatch } from "react-redux"; // Importing the useDispatch hook from react-redux to dispatch actions to the Redux store
 import { set } from "mongoose";
+import { Link } from "react-router-dom";
 
 // Defining the Profile component
 export default function Profile() {
@@ -72,7 +73,7 @@ export default function Profile() {
           setInputChange(true);
           console.log("File available at", downloadURL);
         });
-      }
+      },
     );
   };
   //--------------------------------- Function to handle form input changes-------------------------------------------
@@ -147,8 +148,8 @@ export default function Profile() {
 
   // Rendering the Profile component
   return (
-    <div className="p-3 max-w-lg mx-auto">
-      <h1 className="text-3xl font-semibold text-center my-7">Profile</h1>
+    <div className="mx-auto max-w-lg p-3">
+      <h1 className="my-7 text-center text-3xl font-semibold">Profile</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
           onChange={(e) => setFile(e.target.files[0])} // Updating the file state variable with the selected file
@@ -161,9 +162,9 @@ export default function Profile() {
           onClick={() => fileRef.current.click()} // Triggering the file input click event when the image is clicked
           src={formData.avatar || currentUser.avatar} // Displaying the avatar image from the formData or the currentUser object
           alt="profile"
-          className="rounded-full self-center h-24 w-24 object-cover cursor-pointer"
+          className="h-24 w-24 cursor-pointer self-center rounded-full object-cover"
         />
-        <p className="text-sm self-center">
+        <p className="self-center text-sm">
           {fileUploadError ? (
             <span className="text-red-700">
               Error Image Upload (image must be less than 2mb)
@@ -181,7 +182,7 @@ export default function Profile() {
           id="username"
           placeholder="User Name"
           defaultValue={currentUser.username}
-          className="border p-3 rounded-lg"
+          className="rounded-lg border p-3"
           onChange={handleChange}
         />
         <input
@@ -189,36 +190,42 @@ export default function Profile() {
           id="email"
           placeholder="Email"
           defaultValue={currentUser.email}
-          className="border p-3 rounded-lg"
+          className="rounded-lg border p-3"
           onChange={handleChange}
         />
         <input
           type="password"
           id="password"
           placeholder="Password"
-          className="border p-3 rounded-lg"
+          className="rounded-lg border p-3"
           onChange={handleChange}
         />
         <button
           disabled={loading || !inputChange}
-          className="bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80"
+          className="rounded-lg bg-slate-700 p-3 uppercase text-white hover:opacity-95 disabled:opacity-80"
         >
           {loading ? "Loading..." : "Update"}
         </button>
+        <Link
+          className="rounded-lg bg-green-700 p-3 text-center uppercase text-white hover:opacity-95"
+          to={"/create-listing"}
+        >
+          Create Listing
+        </Link>
       </form>
-      <div className="flex justify-between mt-5">
+      <div className="mt-5 flex justify-between">
         <span
           onClick={handleDeleteUser}
-          className="text-red-700 cursor-pointer"
+          className="cursor-pointer text-red-700"
         >
           Delete account
         </span>
-        <span onClick={handleSignOut} className="text-red-700 cursor-pointer">
+        <span onClick={handleSignOut} className="cursor-pointer text-red-700">
           Sign out
         </span>
       </div>
-      <p className="text-red-700 mt-5">{error ? error : ""}</p>
-      <p className="text-green-700 mt-5">
+      <p className="mt-5 text-red-700">{error ? error : ""}</p>
+      <p className="mt-5 text-green-700">
         {updateSucess ? "User is updated successfully" : ""}
       </p>
     </div>

@@ -6,31 +6,31 @@ export default function Header() {
   const { currentUser } = useSelector((state) => state.user);
   return (
     <header className="bg-slate-200 shadow-md">
-      <div className="flex justify-between items-center max-w-6xl mx-auto p-3">
+      <div className="mx-auto flex max-w-6xl items-center justify-between p-3">
         <Link to="/">
-          <h1 className="font-bold text-sm sm:text-xl flex flex-wrap">
+          <h1 className="flex flex-wrap text-sm font-bold sm:text-xl">
             <span className="text-slate-500">IYADA</span>
             <span className="text-slate-700">Estate</span>
           </h1>
         </Link>
-        <form className="bg-slate-100 p-3 rounded-lg flex items-center">
+        <form className="flex items-center rounded-lg bg-slate-100 p-3">
           <input
             type="text"
             name="search"
             id="search"
-            className="bg-transparent focus:outline-none w-24 sm:w-64"
+            className="w-24 bg-transparent focus:outline-none sm:w-64"
             placeholder="Search..."
           />
           <FaSearch className="text-slate-600" />
         </form>
         <ul className="flex gap-4">
           <Link to="/">
-            <li className="hidden sm:inline text-slate-700 hover:underline">
+            <li className="hidden text-slate-700 hover:underline sm:inline">
               Home
             </li>
           </Link>
           <Link to="/about">
-            <li className="hidden sm:inline text-slate-700 hover:underline">
+            <li className="hidden text-slate-700 hover:underline sm:inline">
               About
             </li>
           </Link>
@@ -44,12 +44,12 @@ export default function Header() {
           <Link to="/profile">
             {currentUser ? (
               <img
-                className="rounded-full h-7 w-7 object-cover"
+                className="h-7 w-7 rounded-full object-cover"
                 src={currentUser.avatar}
                 alt="Profile"
               />
             ) : (
-              <li className="sm:inline text-slate-700 hover:underline">
+              <li className="text-slate-700 hover:underline sm:inline">
                 Sign In
               </li>
             )}

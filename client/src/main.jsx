@@ -7,7 +7,6 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-
   // ? The Provider component makes the Redux store available
   // ? to any nested components that need to access the Redux store.
   // ? The "store" prop is required and it is the Redux store created with createStore.
@@ -28,5 +27,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <PersistGate loading={null} persistor={persistor}>
       <App />
     </PersistGate>
-  </Provider>
+  </Provider>,
 );
