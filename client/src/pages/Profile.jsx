@@ -34,6 +34,10 @@ export default function Profile() {
   const [formData, setFormData] = useState({}); // Creating a state variable to store form data
   const [updateSucess, setUpdateSuccess] = useState(false); // Creating a state variable to indicate if the update was successful
   const [inputChange, setInputChange] = useState(false); // Creating a state variable to indicate if the input fields have changed
+  const [showListingsError, setShowListingsError] = useState(false);
+  const [userListings, setUserListings] = useState([]); // Creating a state variable to store the user's listings
+  const [showListings, setShowListings] = useState(false); // Creating a state variable to indicate if the user's listings should be shown
+  const [loadListings, setLoadListings] = useState(false); // Creating a state variable to indicate if the user's listings should be loaded
   const dispatch = useDispatch(); // Creating a dispatch function to dispatch actions to the Redux store
 
   // useEffect hook to handle file upload when the file state variable changes
@@ -146,6 +150,26 @@ export default function Profile() {
     }
   };
 
+  //--------------------------------- Function to handle show listings-------------------------------------------------
+  const handleShowListings = async () => {
+    try {
+      setShowListingsError(false);
+      setLoadListings(true);
+      const res = await fetch(`/api/user/listings/${currentUser._id}`);
+      const data = await res.json();
+      if (data.success === false) {
+        setShowListingsError(true);
+        return;
+      }
+      setUserListings(data);
+      setShowListings(!showListings);
+      setLoadListings(false);
+    } catch (error) {
+      setShowListingsError(true);
+      setLoadListings(false);
+    }
+  };
+
   // Rendering the Profile component
   return (
     <div className="mx-auto max-w-lg p-3">
@@ -228,6 +252,55 @@ export default function Profile() {
       <p className="mt-5 text-green-700">
         {updateSucess ? "User is updated successfully" : ""}
       </p>
+      <button
+        disabled={loadListings}
+        onClick={handleShowListings}
+        className="w-full rounded-lg border border-slate-300 py-3 text-green-700 hover:border-green-700 disabled:opacity-90  "
+      >
+        {loadListings
+          ? "Loading..."
+          : showListings
+            ? "Hide Listings"
+            : "Show Listings"}
+      </button>
+      <p className="mt-5 text-red-700">
+        {showListingsError ? "Error showing listings" : ""}
+      </p>
+      {showListings && userListings && userListings.length > 0 && (
+        <div className="flex flex-col gap-4">
+          <h1 className="my-7 text-center text-2xl font-semibold">
+            Your Listings
+          </h1>
+          {userListings.map((listing) => (
+            <div
+              key={listing._id}
+              className="flex items-center justify-between rounded-lg border p-3"
+            >
+              <Link
+                className="flex flex-1 items-center justify-between gap-4"
+                to={`/listing/${listing._id}`}
+              >
+                <img
+                  src={listing.imageUrls[0]}
+                  alt="listing cover"
+                  className="h-16 w-16 rounded-lg object-contain"
+                />
+                <p className="flex-1 truncate font-semibold text-slate-700 hover:underline">
+                  {listing.title}
+                </p>
+              </Link>
+              <div className="flex flex-col items-center gap-1">
+                <button type="button" className="text-red-700">
+                  Delete
+                </button>
+                <button type="button" className="text-green-700">
+                  Edit
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
