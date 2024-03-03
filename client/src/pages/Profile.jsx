@@ -170,6 +170,25 @@ export default function Profile() {
     }
   };
 
+  //--------------------------------- Function to handle listing deletion-------------------------------------------------
+  const handleListingDelete = async (listingId) => {
+    try {
+      const res = await fetch(`/api/listing/delete/${listingId}`, {
+        method: "DELETE",
+      });
+      const data = await res.json();
+      if (data.success === false) {
+        console.log(data.message);
+        return;
+      }
+      setUserListings((prev) =>
+        // ? get every listing except the one that was deleted "listingId"
+        prev.filter((listing) => listing._id !== listingId),
+      );
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   // Rendering the Profile component
   return (
     <div className="mx-auto max-w-lg p-3">
@@ -259,7 +278,7 @@ export default function Profile() {
       >
         {loadListings
           ? "Loading..."
-          : showListings
+          : showListings && userListings && userListings.length > 0
             ? "Hide Listings"
             : "Show Listings"}
       </button>
@@ -290,7 +309,11 @@ export default function Profile() {
                 </p>
               </Link>
               <div className="flex flex-col items-center gap-1">
-                <button type="button" className="text-red-700">
+                <button
+                  type="button"
+                  onClick={() => handleListingDelete(listing._id)}
+                  className="text-red-700"
+                >
                   Delete
                 </button>
                 <button type="button" className="text-green-700">
