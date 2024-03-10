@@ -111,7 +111,7 @@ export default function Listing() {
               </p>
               {listing.offer && (
                 <p className="w-full max-w-[200px] rounded-md bg-green-900 p-1 text-center text-white">
-                  ${+listing.regularPrice - +listing.discountPrice} discount
+                  ${+listing.regularPrice - +listing.discountPrice} Discount
                 </p>
               )}
             </div>
@@ -150,7 +150,7 @@ export default function Listing() {
               </button>
             )}
             {currentUser && listing.userRef !== currentUser._id && contact && (
-              <Contact listing={listing}/>
+              <Contact listing={listing} />
             )}
           </div>
         </>

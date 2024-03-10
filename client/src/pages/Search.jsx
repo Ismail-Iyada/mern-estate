@@ -1,6 +1,7 @@
 import { set } from "mongoose";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import ListingItem from "../componants/ListingItem";
 
 export default function Search() {
   const [sidebarData, setSidebarData] = useState({
@@ -57,7 +58,7 @@ export default function Search() {
       const res = await fetch(`/api/listing/get?${searchQuery}`);
       const data = await res.json();
       setListings(data);
-      setLoading(false); 
+      setLoading(false);
     };
     fetchListings();
   }, [location.search]);
@@ -237,8 +238,25 @@ export default function Search() {
           </button>
         </form>
       </div>
-      <div className="mt-5 border-b p-3 text-3xl font-semibold text-slate-700">
-        <h1>Listings results:</h1>
+      <div className="flex-1">
+        <h1 className="mt-5 border-b p-3 text-3xl font-semibold text-slate-700 shadow-sm">
+          Listings results:
+        </h1>
+        <div className="p-7 flex flex-wrap gap-4">
+          {!loading && listings.length === 0 && (
+            <p className="text-xl text-slate-700">No listing found</p>
+          )}
+          {loading && (
+            <p className="w-full text-center text-xl text-slate-700">
+              Loading...
+            </p>
+          )}
+          {!loading &&
+            listings &&
+            listings.map((listing) => (
+              <ListingItem key={listing._id} listing={listing} />
+            ))}
+        </div>
       </div>
     </div>
   );
