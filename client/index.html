@@ -2,9 +2,33 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
+    <link rel="icon" type="image/png" href="https://emojicdn.elk.sh/🏠" />
+    <title>Iyada Estate</title>
+    <script>
+      // ! this is a simple way to change the favicon and title of the page
+      // function setFavicon(emoji) {
+      //   const canvas = document.createElement("canvas");
+      //   canvas.height = 64;
+      //   canvas.width = 64;
+      //   const ctx = canvas.getContext("2d");
+      //   ctx.font = "64px serif";
+      //   ctx.fillText(emoji, 0, 64);
+
+      //   const link =
+      //     document.querySelector("link[rel*='icon']") ||
+      //     document.createElement("link");
+      //   link.type = "image/png";
+      //   link.rel = "shortcut icon";
+      //   link.href = canvas.toDataURL();
+      //   document.getElementsByTagName("head")[0].appendChild(link);
+      // }
+
+      document.addEventListener("visibilitychange", function () {
+        document.title = document.hidden ? "Dream Estate!" : "Iyada Estate";
+        // setFavicon(document.hidden ? "🏠" : "👋");
+      });
+    </script>
   </head>
   <body>
     <div id="root"></div>
