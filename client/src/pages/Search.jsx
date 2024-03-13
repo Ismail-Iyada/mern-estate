@@ -276,7 +276,7 @@ export default function Search() {
         <h1 className="mt-5 border-b p-3 text-3xl font-semibold text-slate-700 shadow-sm">
           Listings results:
         </h1>
-        <div className="flex flex-wrap gap-4 p-4">
+        <div className="p-4">
           {!loading && listings.length === 0 && (
             <p className="text-xl text-slate-700">No listing found</p>
           )}
@@ -285,6 +285,7 @@ export default function Search() {
               Loading...
             </p>
           )}
+          {/* ********************************cards list******************************* */}
           {!loading && listings && (
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 ">
               {listings.map((listing) => (

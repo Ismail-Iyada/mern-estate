@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import About from "./pages/About";
 import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
@@ -10,10 +10,27 @@ import CreateListing from "./pages/CreateListing";
 import UpdateListing from "./pages/UpdateListing";
 import Listing from "./pages/Listing";
 import Search from "./pages/Search";
+import { useEffect } from "react";
+
+// * The ScrollToTop component is used to scroll to the top of the page when the URL changes.
+// ! created it cz i cant use (uselocation) hook in the App
+// ! component cz it's not a route component (the parent must be BrowserRouter).
+function ScrollToTop() {
+  // * The useLocation hook returns the location object that represents the current URL.
+  const { pathname } = useLocation();
+  // * The useEffect hook is used to scroll to the top of the page when the URL changes.
+  // ? did this cz i noticed that the page was not scrolling to the top when i clicked on a link!!
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
