@@ -36,7 +36,7 @@ export default function Listing() {
         if (data.success === false) {
           setError(true);
           setLoading(false);
-          console.log(data.message);
+          // console.log(data.message);
           return;
         }
         setLoading(false);
@@ -45,7 +45,7 @@ export default function Listing() {
       } catch (error) {
         setLoading(false);
         setError(true);
-        console.log(error.message);
+        // console.log(error.message);
       }
     };
     fetchListing();

@@ -75,7 +75,7 @@ export default function Profile() {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           setFormData({ ...formData, avatar: downloadURL }); // Updating the formData state variable with the download URL of the uploaded file
           setInputChange(true);
-          console.log("File available at", downloadURL);
+          // console.log("File available at", downloadURL);
         });
       },
     );
@@ -178,7 +178,7 @@ export default function Profile() {
       });
       const data = await res.json();
       if (data.success === false) {
-        console.log(data.message);
+        // console.log(data.message);
         return;
       }
       setUserListings((prev) =>

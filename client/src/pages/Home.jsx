@@ -12,9 +12,9 @@ export default function Home() {
   const [rentListings, setRentListings] = useState([]);
   SwiperCore.use([Navigation, Autoplay, Pagination]);
 
-  console.log(saleListings);
-  console.log(rentListings);
-  console.log(offerListings);
+  // console.log(saleListings);
+  // console.log(rentListings);
+  // console.log(offerListings);
   useEffect(() => {
     // ! step by step fetching, offer > rent > sale
     // * thats why we call fetchRentListings inside fetchOfferListings,
