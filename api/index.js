@@ -9,6 +9,7 @@ import userRouter from "./routes/user.route.js";
 import authRouter from "./routes/auth.route.js";
 import listingRouter from "./routes/listing.route.js";
 import cookieParser from "cookie-parser";
+import path from "path";
 // initialize the dotenv package
 dotenv.config();
 
@@ -35,6 +36,9 @@ mongoose
   .catch((err) => {
     console.error(`Error connecting to MongoDB: ${err}`);
   });
+
+// ! __dirname is a global object in Node.js that represents the current directory of the file it is used in.
+const __dirname = path.resolve();
 
 const app = express();
 
@@ -70,6 +74,18 @@ app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/listing", listingRouter);
 
+// ! This line of code serves the static files in the client/dist directory.
+app.use(express.static(path.join(__dirname, "/client/dist")));
+
+// ! This line of code serves the index.html file in the client/dist directory for all other routes.
+// * The index.html file is the correct file to serve in this case. When you build a React application (for example, by running npm run build), all of your JSX files get transpiled into JavaScript and bundled together into a few static files: usually a couple of JavaScript files and an index.html file.
+// * The index.html file is the entry point to your application. It includes a <script> tag that loads your bundled JavaScript, which includes all of your React components. When the index.html file is loaded in the browser, it runs your JavaScript, which mounts your React application to a specific element in the index.html file.
+// * So, in a production environment, you don't serve the index.jsx file directly. Instead, you serve the index.html file, which loads the bundled JavaScript that includes your transpiled index.jsx code.
+// * The line of code you posted is a catch-all route that serves the index.html file for all routes not handled by other server-side routes. This is a common pattern in applications that use React Router, because React Router handles routing on the client side. The server just needs to serve the same index.html file for all routes, and then React Router takes over and renders the correct components based on the current URL.
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+});
 // ! This block of code is a middleware function that handles errors in the API server.
 
 app.use((err, req, res, next) => {
