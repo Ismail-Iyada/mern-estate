@@ -11,6 +11,7 @@ import UpdateListing from "./pages/UpdateListing";
 import Listing from "./pages/Listing";
 import Search from "./pages/Search";
 import { useEffect } from "react";
+import Footer from "./componants/Footer";
 
 // * The ScrollToTop component is used to scroll to the top of the page when the URL changes.
 // ! created it cz i cant use (uselocation) hook in the App
@@ -53,6 +54,7 @@ export default function App() {
           />
         </Route>
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

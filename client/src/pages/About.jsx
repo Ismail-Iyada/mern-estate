@@ -1,11 +1,20 @@
-import React from "react";
-
 export default function About() {
   return (
     <div className=" mx-auto max-w-6xl px-4 py-20">
       <h1 className="mb-4 text-2xl font-bold text-slate-800 sm:text-3xl">
         About <span className="text-slate-600">Iyada</span> Estate
       </h1>
+      <h3 className="m-2">
+        Made by{" "}
+        <a
+          href="https://www.linkedin.com/in/ismail-iyada/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline hover:text-slate-950"
+        >
+          Ismail IYADA
+        </a>
+      </h3>
       <p className="mb-4 text-slate-700">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod natus
         repudiandae laudantium, placeat sit omnis reprehenderit a in, amet
