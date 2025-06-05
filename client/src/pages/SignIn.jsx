@@ -69,7 +69,7 @@ export default function SignIn() {
         />
         <button
           disabled={loading || !formData.email || !formData.password}
-          className="rounded-lg bg-slate-700 p-3 uppercase text-white hover:opacity-95 disabled:opacity-80"
+          className="rounded-lg bg-orange-700 p-3 uppercase text-white hover:opacity-95 disabled:opacity-80"
         >
           {loading ? "Loading..." : "Sign In"}
         </button>

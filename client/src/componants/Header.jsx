@@ -38,21 +38,30 @@ export default function Header() {
     if (searchTermFromUrl) {
       setSearchTerm(searchTermFromUrl);
     }
-  // The side effect will run whenever the URL's search string changes
+    // The side effect will run whenever the URL's search string changes
   }, [location.search]);
 
   return (
-    <header className="bg-slate-200 shadow-md">
+    <header className="bg-orange-200 shadow-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between p-3">
+        {/*
         <Link to="/">
           <h1 className="flex flex-wrap text-sm font-bold sm:text-xl">
-            <span className="text-slate-500">IYADA</span>
-            <span className="text-slate-700">Estate</span>
+            <span className="text-orange-500">IYADA</span>
+            <span className="text-orange-700">Estate</span>
           </h1>
+        </Link>
+        */}
+        <Link to="/">
+          <img
+            src="/../../assets/bimages/1h.svg"
+            alt="Bio Market Berkane Logo"
+            className="w-44"
+          />
         </Link>
         <form
           onSubmit={handleSubmit}
-          className="flex items-center rounded-lg bg-slate-100 p-3"
+          className="flex items-center rounded-lg bg-orange-100 p-3"
         >
           <input
             type="text"
@@ -64,17 +73,17 @@ export default function Header() {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
           <button>
-            <FaSearch className="text-slate-600" />
+            <FaSearch className="text-orange-600" />
           </button>
         </form>
         <ul className="flex gap-4">
           <Link to="/">
-            <li className="hidden text-slate-700 hover:underline sm:inline">
+            <li className="hidden text-orange-700 hover:underline sm:inline">
               Home
             </li>
           </Link>
           <Link to="/about">
-            <li className="hidden text-slate-700 hover:underline sm:inline">
+            <li className="hidden text-orange-700 hover:underline sm:inline">
               About
             </li>
           </Link>
@@ -93,7 +102,7 @@ export default function Header() {
                 alt="Profile"
               />
             ) : (
-              <li className="text-slate-700 hover:underline sm:inline">
+              <li className="text-orange-700 hover:underline sm:inline">
                 Sign In
               </li>
             )}

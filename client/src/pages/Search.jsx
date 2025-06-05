@@ -191,7 +191,7 @@ export default function Search() {
                   onChange={handleChange}
                   checked={sidebarData.type === "all"}
                 />
-                <label htmlFor="all">Rent & Sale</label>
+                <label htmlFor="all">All Products</label>
               </div>
               <div className="flex gap-2">
                 <input
@@ -201,7 +201,7 @@ export default function Search() {
                   onChange={handleChange}
                   checked={sidebarData.type === "rent"}
                 />
-                <label htmlFor="rent">Rent</label>
+                <label htmlFor="rent">Organic Food</label>
               </div>
               <div className="flex gap-2">
                 <input
@@ -211,7 +211,7 @@ export default function Search() {
                   onChange={handleChange}
                   checked={sidebarData.type === "sale"}
                 />
-                <label htmlFor="sale">Sale</label>
+                <label htmlFor="sale">Artisanal Goods</label>
               </div>
               <div className="flex gap-2">
                 <input
@@ -221,13 +221,13 @@ export default function Search() {
                   onChange={handleChange}
                   checked={sidebarData.offer}
                 />
-                <label htmlFor="offer">Offer</label>
+                <label htmlFor="offer">Special Offers</label>
               </div>
             </div>
           </div>
           {/* ----------------Amenition------------------- */}
           <div className="flex  flex-wrap  items-center gap-2">
-            <label className="min-w-24 font-semibold">Amenitites:</label>
+            <label className="min-w-24 font-semibold">Product features:</label>
             <div className="flex flex-wrap gap-5">
               <div className="flex gap-2">
                 <input
@@ -237,7 +237,7 @@ export default function Search() {
                   onChange={handleChange}
                   checked={sidebarData.parking}
                 />
-                <label htmlFor="parking">Parking</label>
+                <label htmlFor="parking">Locally Sourced</label>
               </div>
               <div className="flex gap-2">
                 <input
@@ -247,7 +247,7 @@ export default function Search() {
                   onChange={handleChange}
                   checked={sidebarData.furnished}
                 />
-                <label htmlFor="furnished">Furnished</label>
+                <label htmlFor="furnished">Handmade</label>
               </div>
             </div>
           </div>
@@ -267,21 +267,21 @@ export default function Search() {
             </select>
           </div>
           {/* ----------------Search Button--------------- */}
-          <button className="rounded-lg bg-slate-700 p-3 font-semibold uppercase text-white hover:opacity-95">
+          <button className="rounded-lg bg-orange-700 p-3 font-semibold uppercase text-white hover:opacity-95">
             Search
           </button>
         </form>
       </div>
       <div className="flex-1">
-        <h1 className="mt-5 border-b p-3 text-3xl font-semibold text-slate-700 shadow-sm">
-          Listings results:
+        <h1 className="mt-5 border-b p-3 text-3xl font-semibold text-orange-700 shadow-sm">
+          Marketplace results:
         </h1>
         <div className="p-4">
           {!loading && listings.length === 0 && (
-            <p className="text-xl text-slate-700">No listing found</p>
+            <p className="text-xl text-orange-700">No matching results</p>
           )}
           {loading && (
-            <p className="w-full text-center text-xl text-slate-700">
+            <p className="w-full text-center text-xl text-orange-700">
               Loading...
             </p>
           )}
@@ -298,7 +298,7 @@ export default function Search() {
         <div className="flex justify-end p-7">
           {showMore && (
             <button
-              className="w-52 border-t-2 border-slate-700 p-7 pe-0 text-right text-green-700 hover:underline md:w-96"
+              className="w-52 border-t-2 border-orange-700 p-7 pe-0 text-right text-green-700 hover:underline md:w-96"
               onClick={onShowMoreClick}
             >
               show more

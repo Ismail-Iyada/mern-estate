@@ -59,14 +59,16 @@ export default function Home() {
     <div>
       {/* Top / landing*/}
       <div className="mx-auto flex max-w-6xl flex-col gap-6 px-3 py-28">
-        <h1 className="text-3xl font-bold text-slate-700 lg:text-6xl">
-          Find your next <span className="text-slate-500">Perfect</span>
-          <br /> place with ease
+        <h1 className="text-3xl font-bold text-orange-700 lg:text-6xl">
+          Discover your next <span className="text-orange-500">Organic</span>
+          <br /> favorite with ease
         </h1>
         <div className="text-xs text-gray-400 sm:text-sm">
-          3yada Estate is the best place to find your next perfect place to
-          live. <br /> We have a wide range of properties for sale and rent.
+          Bio Market Berkane is your go-to destination for local organic
+          products. <br />
+          Explore a curated selection from trusted Moroccan producers.
         </div>
+
         <Link
           className="text-xs font-bold text-blue-800 underline sm:text-sm"
           to="/search"
@@ -103,12 +105,12 @@ export default function Home() {
         {offerListings && offerListings.length > 0 && (
           <div className="">
             <div className="my-3">
-              <h2 className="text-2xl font-semibold">Recent offers</h2>
+              <h2 className="text-2xl font-semibold">Recent products</h2>
               <Link
                 className="text-sm text-blue-800 hover:underline"
                 to={`/search?offer=true`}
               >
-                Show more offers
+                Show more products
               </Link>
             </div>
             <div className="grid grid-cols-1 gap-4  sm:grid-cols-2 lg:grid-cols-4">
@@ -126,12 +128,12 @@ export default function Home() {
         {rentListings && rentListings.length > 0 && (
           <div className="">
             <div className="my-3">
-              <h2 className="text-2xl font-semibold">Recent places for rent</h2>
+              <h2 className="text-2xl font-semibold">Recent organic food</h2>
               <Link
                 className="text-sm text-blue-800 hover:underline"
                 to={`/search?type=rent`}
               >
-                Show places for rent
+                Show more organic food
               </Link>
             </div>
             <div className="grid grid-cols-1 gap-4  sm:grid-cols-2 lg:grid-cols-4">
@@ -149,12 +151,12 @@ export default function Home() {
         {saleListings && saleListings.length > 0 && (
           <div className="">
             <div className="my-3">
-              <h2 className="text-2xl font-semibold">Recent places for sale</h2>
+              <h2 className="text-2xl font-semibold">Recent artisanal goods</h2>
               <Link
                 className="text-sm text-blue-800 hover:underline"
                 to={`/search?type=sale`}
               >
-                Show more places for sale
+                Show more artisanal goods
               </Link>
             </div>
             <div className="grid grid-cols-1 gap-4  sm:grid-cols-2 lg:grid-cols-4">

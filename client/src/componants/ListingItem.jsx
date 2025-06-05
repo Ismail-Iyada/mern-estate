@@ -15,7 +15,7 @@ export default function ListingItem({ listing }) {
           className="transition-scale h-[320px] w-full object-cover duration-300 hover:scale-105 sm:h-[220px]"
         />
         <div className="flex  w-full flex-col gap-2 p-3">
-          <p className="truncate text-lg font-semibold text-slate-700">
+          <p className="truncate text-lg font-semibold text-orange-700">
             {listing.title}
           </p>
           <div className="flex items-center gap-1">
@@ -27,14 +27,14 @@ export default function ListingItem({ listing }) {
           <p className="line-clamp-2 text-sm text-gray-600">
             {listing.description}
           </p>
-          <p className="mt-2 font-semibold text-slate-500 ">
+          <p className="mt-2 font-semibold text-orange-500 ">
             ${" "}
             {listing.offer
               ? listing.discountPrice.toLocaleString("en-US")
               : listing.regularPrice.toLocaleString("en-US")}
             {listing.type === "rent" && " / month"}
           </p>
-          <div className="flex gap-4 text-slate-700">
+          <div className="flex gap-4 text-orange-700">
             <div className="text-xs font-bold">
               {listing.bedrooms > 1
                 ? `${listing.bedrooms} beds`

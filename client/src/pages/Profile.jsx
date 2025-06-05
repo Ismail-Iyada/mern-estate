@@ -213,7 +213,7 @@ export default function Profile() {
               Error Image Upload (image must be less than 2mb)
             </span>
           ) : filePercentage > 0 && filePercentage < 100 ? (
-            <span className="text-slate-700">{`Uploading Image ${filePercentage}%`}</span>
+            <span className="text-orange-700">{`Uploading Image ${filePercentage}%`}</span>
           ) : filePercentage === 100 ? (
             <span className="text-green-700">Image Successfully Uploaded!</span>
           ) : (
@@ -245,7 +245,7 @@ export default function Profile() {
         />
         <button
           disabled={loading || !inputChange}
-          className="rounded-lg bg-slate-700 p-3 uppercase text-white hover:opacity-95 disabled:opacity-80"
+          className="rounded-lg bg-orange-700 p-3 uppercase text-white hover:opacity-95 disabled:opacity-80"
         >
           {loading ? "Loading..." : "Update"}
         </button>
@@ -274,7 +274,7 @@ export default function Profile() {
       <button
         disabled={loadListings}
         onClick={handleShowListings}
-        className="w-full rounded-lg border border-slate-300 py-3 text-green-700 hover:border-green-700 disabled:opacity-90  "
+        className="w-full rounded-lg border border-orange-300 py-3 text-green-700 hover:border-green-700 disabled:opacity-90  "
       >
         {loadListings
           ? "Loading..."
@@ -304,7 +304,7 @@ export default function Profile() {
                   alt="listing cover"
                   className="h-16 w-16 rounded-lg object-contain"
                 />
-                <p className="flex-1 truncate font-semibold text-slate-700 hover:underline">
+                <p className="flex-1 truncate font-semibold text-orange-700 hover:underline">
                   {listing.title}
                 </p>
               </Link>

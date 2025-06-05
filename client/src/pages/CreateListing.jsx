@@ -372,7 +372,7 @@ export default function CreateListing() {
             ))}
           <button
             disabled={loading || uploading}
-            className="mt-3 rounded-lg bg-slate-700 p-3 uppercase text-white hover:opacity-95 hover:shadow disabled:opacity-80"
+            className="mt-3 rounded-lg bg-orange-700 p-3 uppercase text-white hover:opacity-95 hover:shadow disabled:opacity-80"
           >
             {loading ? "Creating..." : "Create listing"}
           </button>

@@ -76,9 +76,9 @@ export default function Listing() {
             ))}
           </Swiper>
           {/* share link button---------------------------- */}
-          <div className="fixed right-[3%] top-[13%] z-10 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border bg-slate-100">
+          <div className="fixed right-[3%] top-[13%] z-10 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border bg-orange-100">
             <FaShare
-              className="text-slate-500"
+              className="text-orange-500"
               onClick={() => {
                 navigator.clipboard.writeText(window.location.href);
                 setCopied(true);
@@ -90,7 +90,7 @@ export default function Listing() {
           </div>
           {/* link copied pop up----------------------------- */}
           {copied && (
-            <p className="fixed right-[5%] top-[23%] z-10 rounded-md bg-slate-100 p-2">
+            <p className="fixed right-[5%] top-[23%] z-10 rounded-md bg-orange-100 p-2">
               Link copied!
             </p>
           )}
@@ -102,7 +102,7 @@ export default function Listing() {
                 : listing.regularPrice.toLocaleString("en-US")}
               {listing.type === "rent" && " / month"}
             </p>
-            <p className="mt-6  flex items-center gap-2 text-sm text-slate-600">
+            <p className="mt-6  flex items-center gap-2 text-sm text-orange-600">
               <FaMapMarkerAlt className="text-green-700" /> {listing.address}
             </p>
             <div className="flex flex-wrap gap-4">
@@ -115,7 +115,7 @@ export default function Listing() {
                 </p>
               )}
             </div>
-            <p className="text-slate-800">
+            <p className="text-orange-800">
               <span className="font-semibold text-black">Description — </span>
               {listing.description}
             </p>
@@ -144,7 +144,7 @@ export default function Listing() {
             {currentUser && listing.userRef !== currentUser._id && !contact && (
               <button
                 onClick={() => setContact(true)}
-                className="rounded-lg bg-slate-700 p-3 uppercase text-white hover:opacity-95"
+                className="rounded-lg bg-orange-700 p-3 uppercase text-white hover:opacity-95"
               >
                 Contact landlord
               </button>
