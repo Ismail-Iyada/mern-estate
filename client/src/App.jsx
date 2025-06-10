@@ -39,7 +39,7 @@ export default function App() {
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/about" element={<About />} />
         <Route path="/search" element={<Search />} />
-        <Route path="/listing/:listingId" element={<Listing />} />
+        <Route path="/product/:listingId" element={<Listing />} />
         {/**
          * // * The profile page is a private route, so the user will
          * // ! be redirected to the sign-in page if they are not signed in.
@@ -47,9 +47,9 @@ export default function App() {
          */}
         <Route element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
-          <Route path="/create-listing" element={<CreateListing />} />
+          <Route path="/create-product" element={<CreateListing />} />
           <Route
-            path="/update-listing/:listingId"
+            path="/update-product/:listingId"
             element={<UpdateListing />}
           />
         </Route>

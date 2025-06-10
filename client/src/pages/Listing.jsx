@@ -100,14 +100,14 @@ export default function Listing() {
               {listing.offer
                 ? listing.discountPrice.toLocaleString("en-US")
                 : listing.regularPrice.toLocaleString("en-US")}
-              {listing.type === "rent" && " / month"}
+              {listing.type === "rent" && " / unit"}
             </p>
             <p className="mt-6  flex items-center gap-2 text-sm text-orange-600">
               <FaMapMarkerAlt className="text-green-700" /> {listing.address}
             </p>
             <div className="flex flex-wrap gap-4">
               <p className="w-full max-w-[200px] rounded-md bg-red-900 p-1 text-center text-white">
-                {listing.type === "rent" ? "For Rent" : "For Sale"}
+                {listing.type === "rent" ? "Handmade" : "Edible"}
               </p>
               {listing.offer && (
                 <p className="w-full max-w-[200px] rounded-md bg-green-900 p-1 text-center text-white">
@@ -123,22 +123,24 @@ export default function Listing() {
               <li className="flex items-center gap-1 whitespace-nowrap ">
                 <FaBed className="text-lg text-green-700" />{" "}
                 {listing.bedrooms > 1
-                  ? `${listing.bedrooms} Bedrooms`
-                  : `${listing.bedrooms} Bedroom`}
+                  ? `${listing.bedrooms} Quantity`
+                  : `${listing.bedrooms} Quantity`}
               </li>
               <li className="flex items-center gap-1 whitespace-nowrap ">
                 <FaBath className="text-lg text-green-700" />{" "}
                 {listing.bathrooms > 1
-                  ? `${listing.bathrooms} Bathrooms`
-                  : `${listing.bathrooms} Bathroom`}
+                  ? `${listing.bathrooms}  Units per Pack`
+                  : `${listing.bathrooms}  Units per Pack`}
               </li>
               <li className="flex items-center gap-1 whitespace-nowrap ">
                 <FaParking className="text-lg text-green-700" />{" "}
-                {listing.parking ? `Parking spot` : `No Parking`}
+                {listing.parking ? `Pickup Available` : `Not Pickup Available`}
               </li>
               <li className="flex items-center gap-1 whitespace-nowrap ">
                 <FaChair className="text-lg text-green-700" />{" "}
-                {listing.furnished ? `Furnished` : `Unfurnished`}
+                {listing.furnished
+                  ? `Packaged / Ready to use`
+                  : `Not Packaged / Ready to use`}
               </li>
             </ul>
             {currentUser && listing.userRef !== currentUser._id && !contact && (
@@ -146,7 +148,7 @@ export default function Listing() {
                 onClick={() => setContact(true)}
                 className="rounded-lg bg-orange-700 p-3 uppercase text-white hover:opacity-95"
               >
-                Contact landlord
+                Contact seller
               </button>
             )}
             {currentUser && listing.userRef !== currentUser._id && contact && (
