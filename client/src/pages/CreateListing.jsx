@@ -205,7 +205,7 @@ export default function CreateListing() {
                 onChange={handleChange}
                 checked={formData.type === "sale"}
               />
-              <label htmlFor="sale">Edible</label>
+              <label htmlFor="sale">Food & Beverages</label>
             </div>
             <div className="flex gap-2">
               <input
@@ -215,7 +215,7 @@ export default function CreateListing() {
                 onChange={handleChange}
                 checked={formData.type === "rent"}
               />
-              <label htmlFor="rent">Handmade</label>
+              <label htmlFor="rent">Accessories</label>
             </div>
             <div className="flex gap-2">
               <input
@@ -292,7 +292,7 @@ export default function CreateListing() {
               >
                 <span>Regular price</span>
                 {formData.type === "rent" && (
-                  <span className="text-sm">($ / month)</span>
+                  <span className="text-sm">($)</span>
                 )}
               </label>
             </div>
@@ -313,7 +313,7 @@ export default function CreateListing() {
                 >
                   <span>Discounted price</span>
                   {formData.type === "rent" && (
-                    <span className="text-sm">($ / month)</span>
+                    <span className="text-sm">($)</span>
                   )}
                 </label>
               </div>
@@ -375,7 +375,7 @@ export default function CreateListing() {
             disabled={loading || uploading}
             className="mt-3 rounded-lg bg-orange-700 p-3 uppercase text-white hover:opacity-95 hover:shadow disabled:opacity-80"
           >
-            {loading ? "Creating..." : "Create listing"}
+            {loading ? "Creating..." : "Create product"}
           </button>
           {error && <p className="text-sm text-red-700">{error}</p>}
         </div>

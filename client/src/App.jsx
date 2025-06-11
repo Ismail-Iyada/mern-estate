@@ -30,31 +30,30 @@ function ScrollToTop() {
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <ScrollToTop />
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/sign-in" element={<SignIn />} />
-        <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/search" element={<Search />} />
-        <Route path="/product/:listingId" element={<Listing />} />
-        {/**
-         * // * The profile page is a private route, so the user will
-         * // ! be redirected to the sign-in page if they are not signed in.
-         * // ? that logic is handled in the PrivateRoute component.
-         */}
-        <Route element={<PrivateRoute />}>
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/create-product" element={<CreateListing />} />
-          <Route
-            path="/update-product/:listingId"
-            element={<UpdateListing />}
-          />
-        </Route>
-      </Routes>
-      <Footer />
-    </BrowserRouter>
+    <div className="flex min-h-screen flex-col">
+      <BrowserRouter>
+        <ScrollToTop />
+        <Header />
+        <main className="flex-1">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/listing/:listingId" element={<Listing />} />
+            <Route element={<PrivateRoute />}>
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/create-listing" element={<CreateListing />} />
+              <Route
+                path="/update-listing/:listingId"
+                element={<UpdateListing />}
+              />
+            </Route>
+          </Routes>
+        </main>
+        <Footer />
+      </BrowserRouter>
+    </div>
   );
 }

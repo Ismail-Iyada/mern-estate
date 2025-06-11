@@ -13,7 +13,7 @@ export default function Footer() {
 
         <Link to="/">
           <img
-            src="/../../assets/wimages/1v.svg"
+            src="https://firebasestorage.googleapis.com/v0/b/mern-estate-yada.appspot.com/o/17496028245431v.svg?alt=media&token=54e31ed5-f633-457e-b360-dea3b679caec"
             alt="Bio Market Berkane Logo"
             className="w-32"
           />

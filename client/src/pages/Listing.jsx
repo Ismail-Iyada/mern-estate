@@ -7,13 +7,12 @@ import { Navigation } from "swiper/modules";
 import "swiper/css/bundle";
 import { useSelector } from "react-redux";
 import {
-  FaBath,
-  FaBed,
-  FaChair,
-  FaMapMarkedAlt,
+  FaBoxes,
+  FaBoxOpen,
+  FaCubes,
   FaMapMarkerAlt,
-  FaParking,
   FaShare,
+  FaTruckPickup,
 } from "react-icons/fa";
 import Contact from "../componants/Contact";
 
@@ -100,7 +99,7 @@ export default function Listing() {
               {listing.offer
                 ? listing.discountPrice.toLocaleString("en-US")
                 : listing.regularPrice.toLocaleString("en-US")}
-              {listing.type === "rent" && " / unit"}
+              {listing.type === "rent" && ""}
             </p>
             <p className="mt-6  flex items-center gap-2 text-sm text-orange-600">
               <FaMapMarkerAlt className="text-green-700" /> {listing.address}
@@ -121,23 +120,23 @@ export default function Listing() {
             </p>
             <ul className="my-4 flex flex-wrap items-center gap-4 text-sm font-semibold text-green-900 sm:gap-6">
               <li className="flex items-center gap-1 whitespace-nowrap ">
-                <FaBed className="text-lg text-green-700" />{" "}
+                <FaBoxes className="text-lg text-green-700" />{" "}
                 {listing.bedrooms > 1
                   ? `${listing.bedrooms} Quantity`
                   : `${listing.bedrooms} Quantity`}
               </li>
               <li className="flex items-center gap-1 whitespace-nowrap ">
-                <FaBath className="text-lg text-green-700" />{" "}
+                <FaCubes className="text-lg text-green-700" />{" "}
                 {listing.bathrooms > 1
                   ? `${listing.bathrooms}  Units per Pack`
                   : `${listing.bathrooms}  Units per Pack`}
               </li>
               <li className="flex items-center gap-1 whitespace-nowrap ">
-                <FaParking className="text-lg text-green-700" />{" "}
+                <FaTruckPickup className="text-lg text-green-700" />{" "}
                 {listing.parking ? `Pickup Available` : `Not Pickup Available`}
               </li>
               <li className="flex items-center gap-1 whitespace-nowrap ">
-                <FaChair className="text-lg text-green-700" />{" "}
+                <FaBoxOpen className="text-lg text-green-700" />{" "}
                 {listing.furnished
                   ? `Packaged / Ready to use`
                   : `Not Packaged / Ready to use`}

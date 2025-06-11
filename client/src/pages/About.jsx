@@ -1,8 +1,17 @@
+import { Link } from "react-router-dom";
+
 export default function About() {
   return (
     <div className=" mx-auto max-w-6xl px-4 py-20">
-      <h1 className="mb-4 text-2xl font-bold text-orange-800 sm:text-3xl">
-        About <span className="text-orange-600">Iyada</span> Estate
+      <h1 className="mb-4 flex items-end text-2xl font-bold text-orange-800 sm:text-3xl">
+        About{" "}
+        <Link to="/">
+          <img
+            src="/../../assets/bimages/1h.svg"
+            alt="Bio Market Berkane Logo"
+            className="inline-block w-44"
+          />
+        </Link>
       </h1>
       <h3 className="m-2">
         Made by{" "}
@@ -16,31 +25,22 @@ export default function About() {
         </a>
       </h3>
       <p className="mb-4 text-orange-700">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod natus
-        repudiandae laudantium, placeat sit omnis reprehenderit a in, amet
-        veniam, ea repellat aliquid laborum autem similique repellendus porro ad
-        voluptates. Fugiat assumenda, nesciunt aliquid vitae ea est! Vel,
-        corrupti est rem neque nemo debitis veritatis in labore vitae tempore?
-        Quam aut adipisci reiciendis illum neque fugiat officia illo mollitia
-        vitae.
+        Bio Market Berkane is your trusted destination for natural and organic
+        Moroccan products. Our mission is to support local farmers and artisans
+        by offering you authentic, high-quality goods—from healthy foods and
+        natural cosmetics to everyday wellness essentials.
       </p>
       <p className="mb-4 text-orange-700">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque optio
-        laudantium alias nesciunt maiores doloremque corrupti iure dolores,
-        facilis dignissimos illum tempora autem cupiditate distinctio fugiat
-        quasi officiis provident fugit. Iste, ea! Doloribus deserunt itaque in
-        neque voluptate quas reprehenderit et, id numquam dolorum minima quod
-        porro? Cupiditate esse expedita non repudiandae, commodi pariatur odio
-        iste minus, magni sunt libero!
+        We believe in simple, transparent shopping that connects you directly
+        with the best that Morocco has to offer. Every item on our platform is
+        carefully selected to meet your needs for freshness, quality, and
+        sustainability.
       </p>
       <p className="mb-4 text-orange-700">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi
-        libero sint soluta quae eum fugiat eligendi assumenda nisi? Numquam id
-        aliquid rerum quam aspernatur expedita officia voluptatum tempore ipsa
-        esse. Numquam doloribus reprehenderit rem incidunt, velit saepe
-        excepturi animi, laborum molestiae nesciunt temporibus provident.
-        Deleniti consectetur vel amet dolorum sapiente, voluptatibus officiis,
-        eos numquam mollitia a culpa magnam fugiat molestiae.
+        Whether you're shopping for your home or looking for unique local
+        products, Bio Market Berkane brings you a smooth, secure, and
+        multilingual shopping experience, available in French, English, and
+        Arabic.
       </p>
     </div>
   );

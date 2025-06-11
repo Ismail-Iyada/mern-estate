@@ -176,7 +176,7 @@ export default function UpdateListing() {
   return (
     <main className="mx-auto max-w-4xl p-3">
       <h1 className="my-7 text-center text-3xl font-semibold">
-        Update a Listing
+        Update a Product
       </h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4 sm:flex-row">
         {/* left col */}
@@ -184,7 +184,7 @@ export default function UpdateListing() {
           <input
             type="text"
             id="title"
-            placeholder="Title"
+            placeholder="Product name"
             className="rounded-lg border p-3"
             maxLength={62}
             minLength={10}
@@ -195,7 +195,7 @@ export default function UpdateListing() {
           <textarea
             type="text"
             id="description"
-            placeholder="Description"
+            placeholder="Describe the product, its benefits, and how it’s made"
             className="rounded-lg border p-3"
             required
             onChange={handleChange}
@@ -204,7 +204,7 @@ export default function UpdateListing() {
           <input
             type="text"
             id="address"
-            placeholder="Address"
+            placeholder="Origin / Producer’s location"
             className="rounded-lg border p-3"
             required
             onChange={handleChange}
@@ -219,7 +219,7 @@ export default function UpdateListing() {
                 onChange={handleChange}
                 checked={formData.type === "sale"}
               />
-              <label htmlFor="sale">Sell</label>
+              <label htmlFor="sale">Food & Beverages</label>
             </div>
             <div className="flex gap-2">
               <input
@@ -229,7 +229,7 @@ export default function UpdateListing() {
                 onChange={handleChange}
                 checked={formData.type === "rent"}
               />
-              <label htmlFor="rent">Rent</label>
+              <label htmlFor="rent">Accessories</label>
             </div>
             <div className="flex gap-2">
               <input
@@ -239,7 +239,7 @@ export default function UpdateListing() {
                 onChange={handleChange}
                 checked={formData.parking}
               />
-              <label htmlFor="parking">Parking spot</label>
+              <label htmlFor="parking">Pickup Available</label>
             </div>
             <div className="flex gap-2">
               <input
@@ -249,7 +249,7 @@ export default function UpdateListing() {
                 onChange={handleChange}
                 checked={formData.furnished}
               />
-              <label htmlFor="furnished">Furnished</label>
+              <label htmlFor="furnished">Packaged / Ready to use</label>
             </div>
             <div className="flex gap-2">
               <input
@@ -259,7 +259,7 @@ export default function UpdateListing() {
                 onChange={handleChange}
                 checked={formData.offer}
               />
-              <label htmlFor="offer">Offer</label>
+              <label htmlFor="offer">Discounted Offer</label>
             </div>
           </div>
           <div className="flex flex-wrap gap-6">
@@ -274,7 +274,7 @@ export default function UpdateListing() {
                 onChange={handleChange}
                 value={formData.bedrooms}
               />
-              <label htmlFor="bedrooms">Beds</label>
+              <label htmlFor="bedrooms">Quantity</label>
             </div>
             <div className="flex items-center gap-2">
               <input
@@ -287,7 +287,7 @@ export default function UpdateListing() {
                 onChange={handleChange}
                 value={formData.bathrooms}
               />
-              <label htmlFor="bathrooms">Baths</label>
+              <label htmlFor="bathrooms">Units per Pack</label>
             </div>
             <div className="flex w-full items-center gap-2">
               <input
@@ -306,7 +306,7 @@ export default function UpdateListing() {
               >
                 <span>Regular price</span>
                 {formData.type === "rent" && (
-                  <span className="text-sm">($ / month)</span>
+                  <span className="text-sm">($)</span>
                 )}
               </label>
             </div>
@@ -327,7 +327,7 @@ export default function UpdateListing() {
                 >
                   <span>Discounted price</span>
                   {formData.type === "rent" && (
-                    <span className="text-sm">($ / month)</span>
+                    <span className="text-sm">($)</span>
                   )}
                 </label>
               </div>
@@ -388,7 +388,7 @@ export default function UpdateListing() {
             disabled={loading || uploading}
             className="mt-3 rounded-lg bg-orange-700 p-3 uppercase text-white hover:opacity-95 hover:shadow disabled:opacity-80"
           >
-            {loading ? "Updating..." : "Update listing"}
+            {loading ? "Updating..." : "Update product"}
           </button>
           {error && <p className="text-sm text-red-700">{error}</p>}
         </div>

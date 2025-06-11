@@ -32,18 +32,18 @@ export default function ListingItem({ listing }) {
             {listing.offer
               ? listing.discountPrice.toLocaleString("en-US")
               : listing.regularPrice.toLocaleString("en-US")}
-            {listing.type === "rent" && " / month"}
+            {listing.type === "rent" && ""}
           </p>
           <div className="flex gap-4 text-orange-700">
             <div className="text-xs font-bold">
               {listing.bedrooms > 1
-                ? `${listing.bedrooms} beds`
-                : `${listing.bedrooms} bed`}
+                ? `${listing.bedrooms} Quantity`
+                : `${listing.bedrooms} Quantity`}
             </div>
             <div className="text-xs font-bold">
               {listing.bathrooms > 1
-                ? `${listing.bathrooms} baths`
-                : `${listing.bathrooms} bath`}
+                ? `${listing.bathrooms} Units per Pack`
+                : `${listing.bathrooms} Units per Pack`}
             </div>
           </div>
         </div>

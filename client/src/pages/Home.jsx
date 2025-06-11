@@ -128,12 +128,14 @@ export default function Home() {
         {rentListings && rentListings.length > 0 && (
           <div className="">
             <div className="my-3">
-              <h2 className="text-2xl font-semibold">Recent organic food</h2>
+              <h2 className="text-2xl font-semibold">
+                Recent Food & Beverages
+              </h2>
               <Link
                 className="text-sm text-blue-800 hover:underline"
                 to={`/search?type=rent`}
               >
-                Show more organic food
+                Show more Food & Beverages
               </Link>
             </div>
             <div className="grid grid-cols-1 gap-4  sm:grid-cols-2 lg:grid-cols-4">
@@ -151,12 +153,12 @@ export default function Home() {
         {saleListings && saleListings.length > 0 && (
           <div className="">
             <div className="my-3">
-              <h2 className="text-2xl font-semibold">Recent artisanal goods</h2>
+              <h2 className="text-2xl font-semibold">Recent Accessories</h2>
               <Link
                 className="text-sm text-blue-800 hover:underline"
                 to={`/search?type=sale`}
               >
-                Show more artisanal goods
+                Show more Accessories
               </Link>
             </div>
             <div className="grid grid-cols-1 gap-4  sm:grid-cols-2 lg:grid-cols-4">

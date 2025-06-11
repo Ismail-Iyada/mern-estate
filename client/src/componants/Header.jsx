@@ -54,7 +54,7 @@ export default function Header() {
         */}
         <Link to="/">
           <img
-            src="/../../assets/bimages/1h.svg"
+            src="https://firebasestorage.googleapis.com/v0/b/mern-estate-yada.appspot.com/o/17496028567031h.svg?alt=media&token=e599d625-2b32-47c6-af4d-03dc95425824"
             alt="Bio Market Berkane Logo"
             className="w-44"
           />
