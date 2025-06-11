@@ -106,7 +106,7 @@ export default function Listing() {
             </p>
             <div className="flex flex-wrap gap-4">
               <p className="w-full max-w-[200px] rounded-md bg-red-900 p-1 text-center text-white">
-                {listing.type === "rent" ? "Handmade" : "Edible"}
+                {listing.type === "rent" ? "Accessories" : "Food & Beverages"}
               </p>
               {listing.offer && (
                 <p className="w-full max-w-[200px] rounded-md bg-green-900 p-1 text-center text-white">

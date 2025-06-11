@@ -237,7 +237,7 @@ export default function Search() {
                   onChange={handleChange}
                   checked={sidebarData.parking}
                 />
-                <label htmlFor="parking">Locally Sourced</label>
+                <label htmlFor="parking">Pickup Available</label>
               </div>
               <div className="flex gap-2">
                 <input
@@ -247,7 +247,7 @@ export default function Search() {
                   onChange={handleChange}
                   checked={sidebarData.furnished}
                 />
-                <label htmlFor="furnished">Handmade</label>
+                <label htmlFor="furnished">Packaged / Ready to use</label>
               </div>
             </div>
           </div>
